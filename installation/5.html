@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>设计模式 · js设计模式</title>
+        <title>5模块化模式 · js设计模式</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -73,10 +73,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="1.html" />
+    <link rel="next" href="6.html" />
     
     
-    <link rel="prev" href="../" />
+    <link rel="prev" href="4.html" />
     
 
     </head>
@@ -129,7 +129,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.2" data-path="./">
+        <li class="chapter " data-level="1.2" data-path="./">
             
                 <a href="./">
             
@@ -205,7 +205,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.5" data-path="5.html">
+        <li class="chapter active" data-level="1.2.5" data-path="5.html">
             
                 <a href="5.html">
             
@@ -360,7 +360,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >设计模式</a>
+        <a href=".." >5模块化模式</a>
     </h1>
 </div>
 
@@ -375,12 +375,56 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="js&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;">js&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;</h1>
-<p>&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x7684;&#x5B9E;&#x73B0;&#x90FD;&#x9075;&#x5FAA;&#x4E00;&#x6761;&#x539F;&#x5219;&#x2018;&#x627E;&#x51FA;&#x7A0B;&#x5E8F;&#x4E2D;&#x53D8;&#x5316;&#x7684;&#x5730;&#x65B9;&#xFF0C;&#x5E76;&#x5C06;&#x5B83;&#x5C01;&#x88C5;&#x8D77;&#x6765;&#x2019;&#x3002;</p>
-<p>&#x5B66;&#x4E60;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4E0D;&#x8981;&#x5728;&#x5728;&#x610F;&#x4EE3;&#x7801;&#x7684;&#x7ED3;&#x6784;&#x5F62;&#x5F0F;&#xFF0C;&#x8981;&#x591A;&#x7559;&#x610F;&#x6A21;&#x5F0F;&#x7684;&#x4F7F;&#x7528;&#x573A;&#x666F;&#xFF0C;&#x5728;&#x8FD9;&#x79CD;&#x573A;&#x666F;&#x4E0B;
-&#x89E3;&#x51B3;&#x4E86;&#x4EC0;&#x4E48;&#x95EE;&#x9898;&#xFF0C;&#x591A;&#x8FDB;&#x884C;&#x5BF9;&#x6BD4;&#xFF08;&#x4F7F;&#x7528;&#x524D;&#xFF0C;&#x4F7F;&#x7528;&#x540E;&#x6709;&#x4F55;&#x5DEE;&#x522B;&#xFF09;&#x3002;</p>
-<p>&#x4E4B;&#x524D;&#x770B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x89C9;&#x5F97;&#x590D;&#x6742;&#x6CA1;&#x6709;&#x6DF1;&#x5165;&#x770B;&#x8FC7;&#xFF0C;&#x540E;&#x6765;&#x968F;&#x7740;&#x9879;&#x76EE;&#x8D8A;&#x505A;&#x8D8A;&#x591A;&#x53D1;&#x73B0;&#x5DF2;&#x7ECF;&#x4E0D;&#x7ECF;&#x610F;&#x4E2D;&#x7528;&#x5230;&#x4E0D;&#x5C11;&#x6A21;&#x5F0F;&#xFF1B;
-&#x56DE;&#x8FC7;&#x5934;&#x6765;&#x518D;&#x770B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x611F;&#x89C9;&#x6536;&#x83B7;&#x9887;&#x4E30;&#x3002;&#x8FD8;&#x662F;&#x8981;&#x4F5C;&#x4E3A;&#x5DE5;&#x5177;&#x4E66;&#x8981;&#x591A;&#x770B;&#xFF0C;&#x5E38;&#x770B;&#x5E38;&#x65B0;&#x3002;</p>
+                                <h1 id="&#x6A21;&#x5757;&#x5316;&#x6A21;&#x5F0F;">&#x6A21;&#x5757;&#x5316;&#x6A21;&#x5F0F;</h1>
+<pre><code class="lang-bash">// &#x89C2;&#x5BDF;&#x8005;&#x6A21;&#x5F0F;&#x4E5F;&#x53EF;&#x4EE5;&#x79F0;&#x4E3A;&#x8BA2;&#x9605;&#x6A21;&#x5F0F;
+var merchants = {};
+// &#x5B9A;&#x4E49;&#x9884;&#x5B9A;&#x5217;&#x8868;
+merchants.orderList = {};
+// &#x5C06;&#x589E;&#x52A0;&#x7684;&#x9884;&#x8BA2;&#x8005;&#x6DFB;&#x52A0;&#x5230;&#x9884;&#x5B9A;&#x5BA2;&#x6237;&#x5217;&#x8868;&#x4E2D;
+merchants.listen = <span class="hljs-keyword">function</span>(id, info) {
+    <span class="hljs-keyword">if</span>(!this.orderList[id]) {
+        this.orderList[id] = [];
+    }
+    this.orderList[id].push(info);
+    console.log(<span class="hljs-string">&apos;&#x9884;&#x5B9A;&#x6210;&#x529F;&apos;</span>)
+};
+//&#x53D1;&#x5E03;&#x6D88;&#x606F;
+merchants.publish = <span class="hljs-function"><span class="hljs-title">function</span></span>() {
+    var id = Array.prototype.shift.call(arguments);
+    var infos = this.orderList[id];
+    // &#x5224;&#x65AD;&#x662F;&#x5426;&#x6709;&#x9884;&#x8BA2;&#x4FE1;&#x606F;
+    <span class="hljs-keyword">if</span>(!infos || infos.length === 0) {
+        console.log(<span class="hljs-string">&apos;&#x60A8;&#x8FD8;&#x6CA1;&#x6709;&#x9884;&#x8BA2;&#x4FE1;&#x606F;!&apos;</span>);
+        <span class="hljs-built_in">return</span> <span class="hljs-literal">false</span>;
+    }
+    // &#x5982;&#x679C;&#x6709;&#x9884;&#x8BA2;&#x4FE1;&#x606F;&#xFF0C;&#x5219;&#x5FAA;&#x73AF;&#x6253;&#x5370;
+    <span class="hljs-keyword">for</span> (var i = 0, info; info = infos[i++];) {
+        console.log(<span class="hljs-string">&apos;&#x5C0A;&#x656C;&#x7684;&#x5BA2;&#x6237;&#xFF1A;&apos;</span>);
+        //&#x4F7F;&#x7528;fn.apply(this, arguments));&#x6765;&#x4FDD;&#x8BC1;&#x4F20;&#x8FDB;&#x6709;&#x53C2;&#x51FD;&#x6570;&#x4E5F;&#x53EF;&#x4EE5;&#x6267;&#x884C;&#x5E76;&#x5F97;&#x5230;&#x7ED3;&#x679C;
+        info.apply(this, arguments);
+        console.log(<span class="hljs-string">&apos;&#x5DF2;&#x7ECF;&#x5230;&#x8D27;&#x4E86;&apos;</span>);
+    }
+};
+// &#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x9884;&#x8BA2;&#x8005;customerA&#xFF0C;&#x5E76;&#x6307;&#x5B9A;&#x9884;&#x5B9A;&#x4FE1;&#x606F;
+var customerA = <span class="hljs-function"><span class="hljs-title">function</span></span>() {
+    console.log(<span class="hljs-string">&apos;&#x9ED1;&#x8272;&#x81F3;&#x5C0A;&#x7248;&#x4E00;&#x53F0;&apos;</span>);
+};
+// var customerB = <span class="hljs-function"><span class="hljs-title">function</span></span>() {
+//     console.log(<span class="hljs-string">&apos;&#x7EA2;&#x8272;&#x81F3;&#x5C0A;&#x7248;&#x4E00;&#x53F0;&apos;</span>);
+// };
+
+// customerA &#x9884;&#x5B9A;&#x624B;&#x673A;&#xFF0C;&#x5E76;&#x7559;&#x4E0B;&#x9884;&#x7EA6;&#x7535;&#x8BDD;
+merchants.listen(<span class="hljs-string">&apos;15888888888&apos;</span>, customerA); 
+// merchants.listen(<span class="hljs-string">&apos;15888888888&apos;</span>, customerB); 
+
+// &#x5546;&#x5BB6;&#x53D1;&#x5E03;&#x901A;&#x77E5;&#x4FE1;&#x606F;
+merchants.publish(<span class="hljs-string">&apos;15888888888&apos;</span>);
+/**
+   &#x5C0A;&#x656C;&#x7684;&#x5BA2;&#x6237;&#xFF1A;
+   &#x9ED1;&#x8272;&#x81F3;&#x5C0A;&#x7248;&#x4E00;&#x53F0;
+   &#x5DF2;&#x7ECF;&#x5230;&#x8D27;&#x4E86;
+ */
+</code></pre>
 
                                 
                                 </section>
@@ -408,12 +452,12 @@
 
             
                 
-                <a href="../" class="navigation navigation-prev " aria-label="Previous page: 介绍">
+                <a href="4.html" class="navigation navigation-prev " aria-label="Previous page: 4构造函数模式">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="1.html" class="navigation navigation-next " aria-label="Next page: 1构造函数模式">
+                <a href="6.html" class="navigation navigation-next " aria-label="Next page: 6暴露模块模式">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -424,7 +468,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"设计模式","level":"1.2","depth":1,"next":{"title":"1构造函数模式","level":"1.2.1","depth":2,"path":"installation/1.md","ref":"installation/1.md","articles":[]},"previous":{"title":"介绍","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["image-captions","splitter","expandable-chapters-small","-mathjax","ga","disqus","-lunr","-search","search-pro","sitemap","localized-footer","livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"gitbook-note"},"livereload":{},"splitter":{},"search-pro":{"cutWordLib":"nodejieba"},"localized-footer":{"filename":"./FOOTER.md","hline":true},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"serif","size":2},"highlight":{},"sitemap":{"hostname":"https://rimushi.github.io/"},"expandable-chapters-small":{},"ga":{"configuration":"auto","token":"UA-60753376-1"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true},"image-captions":{"caption":"Image - _CAPTION_","align":"center","variable_name":"_pictures"}},"theme":"default","keywords":"js设计模式手册,markdown,gitbook,","author":"rimushi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":36,"bottom":36},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"_pictures":[]},"title":"js设计模式","links":{"home":false,"about":false,"issues":false,"contribute":false,"sidebar":{"博客地址":"https://rimushi.github.io/"},"tail":{"js设计模式":"http://rimushi.github.io/gitbook-note"},"gitbook":false,"sharing":{"google":true,"facebook":true,"twitter":true,"weibo":true,"qrcode":true}},"introduction":{"path":"README.md","title":"js设计模式"},"gitbook":"*","description":"js设计模式介绍"},"file":{"path":"installation/README.md","mtime":"2019-07-22T09:33:40.920Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-07-22T09:33:45.030Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"5模块化模式","level":"1.2.5","depth":2,"next":{"title":"6暴露模块模式","level":"1.2.6","depth":2,"path":"installation/6.md","ref":"installation/6.md","articles":[]},"previous":{"title":"4构造函数模式","level":"1.2.4","depth":2,"path":"installation/4.md","ref":"installation/4.md","articles":[]},"dir":"ltr"},"config":{"plugins":["image-captions","splitter","expandable-chapters-small","-mathjax","ga","disqus","-lunr","-search","search-pro","sitemap","localized-footer","livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"gitbook-note"},"livereload":{},"splitter":{},"search-pro":{"cutWordLib":"nodejieba"},"localized-footer":{"filename":"./FOOTER.md","hline":true},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"serif","size":2},"highlight":{},"sitemap":{"hostname":"https://rimushi.github.io/"},"expandable-chapters-small":{},"ga":{"configuration":"auto","token":"UA-60753376-1"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true},"image-captions":{"caption":"Image - _CAPTION_","align":"center","variable_name":"_pictures"}},"theme":"default","keywords":"js设计模式手册,markdown,gitbook,","author":"rimushi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":36,"bottom":36},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"_pictures":[]},"title":"js设计模式","links":{"home":false,"about":false,"issues":false,"contribute":false,"sidebar":{"博客地址":"https://rimushi.github.io/"},"tail":{"js设计模式":"http://rimushi.github.io/gitbook-note"},"gitbook":false,"sharing":{"google":true,"facebook":true,"twitter":true,"weibo":true,"qrcode":true}},"introduction":{"path":"README.md","title":"js设计模式"},"gitbook":"*","description":"js设计模式介绍"},"file":{"path":"installation/5.md","mtime":"2019-07-22T09:24:47.443Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-07-22T09:33:45.030Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
