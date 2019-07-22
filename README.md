@@ -1,12 +1,6 @@
-# Gitbook 使用
-使用 Git 和 Markdown 制作精美在线电子书。
+# js设计模式
+使用 gitbook 制作在线电子书
 
-
-## Gitbook项目地址
-
-- GitBook项目官网：<http://www.gitbook.io>
-- GitBook Github地址：<https://github.com/GitbookIO/gitbook>
-- toolchain <https://toolchain.gitbook.com/>
 
 ## 本项目地址
 

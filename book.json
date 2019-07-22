@@ -1,14 +1,13 @@
 {
-  "title": "Gitbook使用入门",
-  "author": "Ein Verne",
-  "description": "Gitbook使用介绍",
-  "keywords": "Gitbook使用手册,markdown,gitbook,",
+  "title": "js设计模式",
+  "author": "rimushi",
+  "description": "js设计模式介绍",
+  "keywords": "js设计模式手册,markdown,gitbook,",
   "introduction": {
     "path": "README.md",
-    "title": "Gitbook使用入门概述"
+    "title": "js设计模式"
   },
   "plugins": [
-    "editlink",
     "image-captions",
     "splitter",
     "expandable-chapters-small",
@@ -24,12 +23,7 @@
   "pluginsConfig": {
     "theme-default": {
       "showLevel": true
-    },
-    "editlink": {
-      "base": "https://github.com/rimushi/gitbook-note",
-      "label": "编辑本页",
-      "multilingual": false
-    },
+    },   
     "image-captions": {
       "caption": "Image - _CAPTION_",
       "align": "center"
@@ -66,7 +60,7 @@
       "博客地址": "https://rimushi.github.io/"
     },
     "tail": {
-      "Gitbook使用入门": "http://rimushi.github.io/gitbook-note"
+      "js设计模式": "http://rimushi.github.io/gitbook-note"
     },
     "gitbook": false,
     "sharing": {
